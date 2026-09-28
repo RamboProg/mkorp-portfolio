@@ -1,26 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #efe6da;
+  --foreground: #231c17;
 }
 
 body {
+  margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+[data-nocursor="1"],
+[data-nocursor="1"] * {
+  cursor: none !important;
+}
+
+.nav-link:hover {
+  background: rgba(35, 28, 23, 0.06);
+}
+
+.stack-pill:hover {
+  background: #fdf8f2;
+  color: #231c17;
+}
+
+.visit-btn:hover {
+  background: #ed2020;
+}
+
+/* Pre-hide reveal targets before JS applies Web Animations "from" frames.
+   Gate lifts when initMotion sets data-pm-ready on the root. */
+@media (scripting: enabled) {
+  [data-pm]:not([data-pm-ready]) [data-rv="up"],
+  [data-pm]:not([data-pm-ready]) [data-rv]:not([data-rv="scale"], [data-rv="left"], [data-rv="fade"], [data-rv="char"], [data-rv="pop"], [data-rv="wipe"], [data-rv="rise"]) {
+    opacity: 0;
+    transform: translateY(56px);
+    filter: blur(10px);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="scale"] {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(12px);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="left"] {
+    opacity: 0;
+    transform: translateX(-48px);
+    filter: blur(6px);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="fade"] {
+    opacity: 0;
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="char"] {
+    transform: translateY(105%) rotate(8deg);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="pop"] {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="wipe"] {
+    clip-path: circle(0% at 50% 0%);
+  }
+  [data-pm]:not([data-pm-ready]) [data-rv="rise"] {
+    clip-path: inset(100% 0 0 0 round 40px);
+    transform: translateY(80px);
+  }
+  [data-pm]:not([data-pm-ready]) [data-draw] {
+    visibility: hidden;
+  }
 }
