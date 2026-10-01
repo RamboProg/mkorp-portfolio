@@ -21,7 +21,11 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+// Vercel sets this system env var on deploys; fall back to local dev for absolute OG URLs.
+const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
 export const metadata: Metadata = {
+  metadataBase: new URL(productionHost ? `https://${productionHost}` : "http://localhost:3000"),
   title: "Mohamed Ismail — Full-Stack Engineer",
   description:
     "Full-stack engineer in Cairo. I connect what you need with the tech that gets it done, across web, mobile, enterprise and AI.",

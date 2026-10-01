@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactElement } from "react";
 import { initMotion } from "../lib/motion";
+import { BrandModel } from "./brand-model";
 import { ContactForm } from "./contact-form";
 
 /** Extends CSSProperties with CSS features not yet in the bundled csstype version. */
@@ -519,9 +520,11 @@ export function MagneticPortfolio(): ReactElement {
         <a
           href="#top"
           data-magnet={8}
-          style={{ padding: "10px 16px", borderRadius: 999, background: "#231c17", color: "#fdf8f2", font: "700 13px var(--font-sora), sans-serif" }}
+          aria-label="mkorp home"
+          style={{ display: "flex", alignItems: "center", padding: "8px 14px", borderRadius: 999, background: "#231c17" }}
         >
-          MI
+          {/* eslint-disable-next-line @next/next/no-img-element -- static brand SVG; next/image adds nothing for vector logos */}
+          <img src="/assets/brand-logos/A-monogram-cream.svg" alt="" width={46} height={24} style={{ display: "block" }} />
         </a>
         {nav.map((n) => (
           <a
@@ -676,14 +679,15 @@ export function MagneticPortfolio(): ReactElement {
               position: "absolute",
               inset: "14%",
               overflow: "hidden",
-              background: "repeating-linear-gradient(135deg,#e7dccd 0 10px,#dfd2c1 10px 20px)",
-              display: "grid",
-              placeItems: "center",
+              background: "#e7dccd",
             }}
           >
-            <span style={{ font: "500 12px var(--font-jetbrains-mono), monospace", color: "#6d6055", background: "rgba(253,248,242,.85)", padding: "6px 10px", borderRadius: 6 }}>
-              headshot
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element -- morphing clip container; next/image fill fights absolute inset layout */}
+            <img
+              src="/assets/Headshot.jpeg"
+              alt="Mohamed Ismail"
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 60%", display: "block", pointerEvents: "none" }}
+            />
           </div>
           {orbit.map((o) => (
             <span
@@ -886,6 +890,14 @@ export function MagneticPortfolio(): ReactElement {
           }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            <div data-rv="scale">
+              <BrandModel
+                src="/assets/3d-models/mkorp-monogram-coin.glb"
+                label="Spinning mkorp monogram coin"
+                motion="spin"
+                style={{ width: 132, height: 132 }}
+              />
+            </div>
             <h2 data-rv="up" style={{ margin: 0, font: "800 clamp(36px,5cqi,72px)/.98 var(--font-sora), sans-serif", letterSpacing: "-.05em" }}>
               A bit about me
             </h2>
@@ -1000,9 +1012,27 @@ export function MagneticPortfolio(): ReactElement {
         </svg>
         <div data-morph="1" data-float={50} style={{ position: "absolute", right: "-8%", bottom: "-20%", width: "min(70cqi,720px)", aspectRatio: "1", background: "#ed2020" }} />
         <div style={{ position: "relative", maxWidth: 1360, margin: "0 auto", display: "flex", flexDirection: "column", gap: 28 }}>
-          <h2 data-rv="up" style={{ margin: 0, font: "800 clamp(48px,9cqi,140px)/.9 var(--font-sora), sans-serif", letterSpacing: "-.06em", maxWidth: 900 }}>
-            Tell me what you need.
-          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,420px),1fr))",
+              alignItems: "center",
+              gap: "clamp(24px,4cqi,56px)",
+            }}
+          >
+            <h2 data-rv="up" style={{ margin: 0, font: "800 clamp(48px,9cqi,140px)/.9 var(--font-sora), sans-serif", letterSpacing: "-.06em", maxWidth: 900 }}>
+              Tell me what you need.
+            </h2>
+            <div data-rv="scale" data-d={120}>
+              <BrandModel
+                src="/assets/3d-models/mkorp-hero-wordmark.glb"
+                label="3D mkorp wordmark on a sand plinth"
+                motion="sway"
+                tilt
+                style={{ width: "100%", aspectRatio: "16 / 9" }}
+              />
+            </div>
+          </div>
           <div data-rv="up" data-d={80}>
             <ContactForm />
           </div>
@@ -1032,8 +1062,23 @@ export function MagneticPortfolio(): ReactElement {
               GitHub
             </a>
           </div>
-          <div style={{ marginTop: "clamp(80px,10cqi,160px)", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12, fontSize: 13, fontWeight: 600 }}>
-            <span>© 2026 Mohamed Ismail</span>
+          <div
+            style={{
+              marginTop: "clamp(80px,10cqi,160px)",
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "flex-end",
+              justifyContent: "space-between",
+              gap: 12,
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            <span style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element -- static brand SVG; next/image adds nothing for vector logos */}
+              <img src="/assets/brand-logos/A-wordmark-ink.svg" alt="mkorp" width={124} height={43} style={{ display: "block" }} />
+              © 2026 Mohamed Ismail
+            </span>
             <span>Made in Cairo</span>
           </div>
         </div>

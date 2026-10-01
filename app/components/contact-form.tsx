@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import type { CSSProperties, ReactElement } from "react";
 import { sendContact, type ContactState } from "../actions/contact";
+import { BrandModel } from "./brand-model";
 
 const initialState: ContactState = { status: "idle", message: "" };
 
@@ -38,6 +39,9 @@ export function ContactForm(): ReactElement {
         >
           {pending ? "Sending…" : "Send message"}
         </button>
+        {state.status === "success" && (
+          <BrandModel src="/assets/3d-models/mkorp-red-pill-mascot.glb" label="Happy red pill mascot" motion="sway" style={{ width: 72, height: 48 }} />
+        )}
         <p aria-live="polite" style={{ margin: 0, fontWeight: 600, color: state.status === "error" ? "#b91515" : "#231c17" }}>
           {state.message}
         </p>
