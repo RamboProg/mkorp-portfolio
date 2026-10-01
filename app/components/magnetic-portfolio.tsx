@@ -1038,7 +1038,7 @@ export function MagneticPortfolio(): ReactElement {
           </div>
           <div data-rv="up" data-d={120} style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
             <a
-              href="mailto:mohamed.ismail@develosystmes.com"
+              href="mailto:m.ismail@mkorp.org"
               data-magnet={18}
               data-cursor="Write"
               style={{ padding: "18px 28px", borderRadius: 999, background: "#231c17", color: "#fdf8f2", fontWeight: 700 }}
